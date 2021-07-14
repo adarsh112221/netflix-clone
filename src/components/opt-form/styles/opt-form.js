@@ -20,6 +20,11 @@ export const Input = styled.input`
   padding: 10px;
   height: 70px;
   box-sizing: border-box;
+  &:focus {
+    outline: none;
+  }
+  font-size: 22px;
+  font-weight: 500;
 `;
 
 export const Break = styled.div`
@@ -30,7 +35,7 @@ export const Break = styled.div`
 export const Button = styled.button`
   display: flex;
   align-items: center;
-  height: 70px;
+  height: 71px;
   background: #e50914;
   color: white;
   text-transform: uppercase;
