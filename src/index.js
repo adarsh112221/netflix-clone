@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "normalize.css";
 import App from "./App";
-
+import {firebase} from './lib/firebase.prod'
 import { GlobalStyles } from "./GlobalStyles";
 import { FireBaseContext } from "./context/firebase";
 ReactDOM.render(
