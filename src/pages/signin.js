@@ -4,7 +4,7 @@ import FooterContainer from "../containers/footer";
 import HeaderContainer from "../containers/header";
 import * as ROUTES from "../constants/routes";
 import { FireBaseContext } from "../context/firebase";
-import {Form} from "../components";
+import { Form } from "../components";
 export default function Signin() {
   const history = useHistory();
   const { firebase } = useContext(FireBaseContext);
@@ -56,7 +56,7 @@ export default function Signin() {
             New To Netflix?<Form.Link to={"/signup"}>Sign up now</Form.Link>
           </Form.Text>
           <Form.TextSmall>
-            This page is protected by Google reCaptcha to ensure you are not a
+            This page is protected by Google reCAPTCHA to ensure you are not a
             bot. Learn more.
           </Form.TextSmall>
         </Form>
