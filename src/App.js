@@ -4,7 +4,7 @@ import { useAuthListner } from "./hooks";
 import { Home, Browse, Signin, Signup } from "./pages/index";
 import { IsUserRedirect, ProtectedRoute } from "./helpers/routes";
 function App() {
-  const {user} =useAuthListner();
+  const { user } = useAuthListner();
   return (
     <Router>
       <IsUserRedirect
@@ -25,7 +25,7 @@ function App() {
       <IsUserRedirect
         user={user}
         loggedInPath={ROUTES.BROWSE}
-        path={ROUTES.HOME}
+       exact path={ROUTES.HOME}
       >
         <Home />
       </IsUserRedirect>

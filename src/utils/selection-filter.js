@@ -1,35 +1,25 @@
-export default function selectionFilter({ series, films }) {
+export default function selectionFilter({ series, films } = []) {
   return {
     series: [
       {
         title: "Documentaries",
-        data: series.filter((item) => {
-          item.genre === "documentaries";
-        }),
+        data: series.filter((item) => item.genre === "documentaries"),
       },
       {
         title: "Comedies",
-        data: series.filter((item) => {
-          item.genre === "comedies";
-        }),
+        data: series.filter((item) => item.genre === "comedies"),
       },
       {
         title: "Childrens",
-        data: series.filter((item) => {
-          item.genre === "childrens";
-        }),
+        data: series.filter((item) => item.genre === "childrens"),
       },
       {
         title: "Crime",
-        data: series.filter((item) => {
-          item.genre === "crime";
-        }),
+        data: series.filter((item) => item.genre === "crime"),
       },
       {
         title: "Feel Good",
-        data: series.filter((item) => {
-          item.genre === "feel-good";
-        }),
+        data: series.filter((item) => item.genre === "feel-good"),
       },
     ],
     films: [
