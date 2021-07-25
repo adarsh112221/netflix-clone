@@ -6,7 +6,7 @@ import * as ROUTES from "../constants/routes";
 import { FireBaseContext } from "../context/firebase";
 import { Form } from "../components";
 export default function Signup() {
-  const {firebase}= useContext(FireBaseContext);
+  const { firebase } = useContext(FireBaseContext);
   const history = useHistory();
   const [FirstName, setFirstName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
@@ -15,7 +15,9 @@ export default function Signup() {
   const isInvalid = FirstName === "" || password === "" || emailAddress === "";
   const handleSignup = (event) => {
     event.preventDefault();
-    firebase.auth().createUserWithEmailAndPassword(emailAddress, password)
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(emailAddress, password)
       .then((result) =>
         result.user
           .updateProfile({
