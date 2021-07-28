@@ -10,8 +10,8 @@ export default function selectionFilter({ series, films } = []) {
         data: series.filter((item) => item.genre === "comedies"),
       },
       {
-        title: "Childrens",
-        data: series.filter((item) => item.genre === "childrens"),
+        title: "Children",
+        data: series.filter((item) => item.genre === "children"),
       },
       {
         title: "Crime",
