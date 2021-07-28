@@ -74,11 +74,11 @@ export const Meta = styled.div`
 
 export const Image = styled.img`
   border: 0;
-  width: 100%;
-  max-width: 305px;
+  // width: 104%;
+  // max-width: 305px;
   cursor: pointer;
   height: auto;
-  padding: 0;
+  padding: 14px;
   margin: 0;
 `;
 
@@ -144,7 +144,7 @@ export const Feature = styled.div`
 
   @media (max-width: 1000px) {
     height: auto;
-    background-size: auto;
+    background-size: cover;
 
     ${Title} {
       font-size: 20px;
