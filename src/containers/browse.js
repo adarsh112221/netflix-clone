@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { SelectionProfileContainer } from "./profiles";
 import { FireBaseContext } from "../context/firebase";
-import { Header, Loading } from "../components";
+import { Card, Header, Loading } from "../components";
 import * as ROUTES from "../constants/routes";
 import Logo from "../logo.svg";
 export function BrowseContainer({ slides }) {
-  const[searchTerm,setSearchTerm]=useState('')
+  const [category, setCategory] = useState("series");
+  const [searchTerm, setSearchTerm] = useState("");
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
+  const [slideRows, setSlideRows] = useState([]);
   const { firebase } = useContext(FireBaseContext);
   const user = firebase.auth().currentUser || {};
   useEffect(() => {
@@ -15,6 +17,10 @@ export function BrowseContainer({ slides }) {
       setLoading(false);
     }, 3000);
   }, [profile.displayName]);
+
+  useEffect(() => {
+    setSlideRows(slides[category]);
+  }, [slides, category]);
   return profile.displayName ? (
     <>
       {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
@@ -22,22 +28,37 @@ export function BrowseContainer({ slides }) {
         <Header.Frame>
           <Header.Group>
             <Header.Logo to={ROUTES.HOME} alt="netflix" src={Logo} />
-            <Header.TextLink>Series</Header.TextLink>
-            <Header.TextLink>Films</Header.TextLink>
+            <Header.TextLink
+              active={category === "series" ? "true" : "false"}
+              onClick={() => setCategory("series")}
+            >
+              Series
+            </Header.TextLink>
+            <Header.TextLink
+              active={category === "films" ? "true" : "false"}
+              onClick={() => setCategory("films")}
+            >
+              Films
+            </Header.TextLink>
           </Header.Group>
           <Header.Group>
-            <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <Header.Search
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
             <Header.Profile>
-              <Header.Picture  src={user.photoURL}/>
-            <Header.Dropdown>
-              <Header.Group>
-                <Header.Picture src={user.photoURL} />
-                <Header.TextLink>{user.displayName}</Header.TextLink>
-              </Header.Group>
-              <Header.Group>
-                <Header.TextLink onClick={()=>firebase.auth().signOut()} >Sign Out</Header.TextLink>
-              </Header.Group>
-            </Header.Dropdown>
+              <Header.Picture src={user.photoURL} />
+              <Header.Dropdown>
+                <Header.Group>
+                  <Header.Picture src={user.photoURL} />
+                  <Header.TextLink>{user.displayName}</Header.TextLink>
+                </Header.Group>
+                <Header.Group>
+                  <Header.TextLink onClick={() => firebase.auth().signOut()}>
+                    Sign Out
+                  </Header.TextLink>
+                </Header.Group>
+              </Header.Dropdown>
             </Header.Profile>
           </Header.Group>
         </Header.Frame>
@@ -53,6 +74,14 @@ export function BrowseContainer({ slides }) {
           <Header.PlayButton>Play</Header.PlayButton>
         </Header.Feature>
       </Header>
+      <Card.Group>
+        |
+        {slideRows.map((slideItem) => (
+          <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+            <Card.Title>{slideItem.title}</Card.Title>
+          </Card>
+        ))}
+      </Card.Group>
     </>
   ) : (
     <SelectionProfileContainer user={user} setProfile={setProfile} />
