@@ -1,4 +1,4 @@
-export default function selectionFilter({ series, films } = []) {
+export default function selectionFilter({ series, films } ) {
   return {
     series: [
       {

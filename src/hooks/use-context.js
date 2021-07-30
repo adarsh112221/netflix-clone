@@ -11,14 +11,16 @@ export default function useContent(target) {
       .collection(target)
       .get()
       .then((snapshot) => {
-        const allContent = snapshot.docs.map(
-          (contentObj)=> ({ ...contentObj.data(), docId: contentObj.id }
-        ));
+        const allContent = snapshot.docs.map((contentObj) => ({
+          ...contentObj.data(),
+          docId: contentObj.id,
+        }));
         setContent(allContent);
       })
       .catch((error) => {
         console.log(error.message);
       });
   }, []);
-  return { [target]: content };
+  console.log({[target]:content});
+  return {[target]:content}
 }

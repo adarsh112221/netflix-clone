@@ -15,7 +15,7 @@ export default function Signin() {
   //check form input elements are valid
   //email and password
   const isInvalid = password === "" || emailAddress === "";
- const  handleSignin = (event) => {
+  const handleSignin = (event) => {
     event.preventDefault();
 
     firebase
